@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>더바인 퀀텀 골드 클래스</title>
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/mona-sans');
+
+    :root {
+      --header-height: 72px;
+      --nav-bg: #373b48;
+      --nav-bg-mobile: #373b48;
+      --nav-link-color: #373b48;
+      --nav-link-hover: #1f2330;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: "Mona Sans", sans-serif;
+      font-weight: 600;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+    body.nav-open {
+      overflow: hidden;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: transparent;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      height: var(--header-height);
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      height: 100%;
+    }
+    .brand img {
+      display: block;
+      height: 44px;
+      width: auto;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    .nav-panel {
+      display: flex;
+      align-items: center;
+      background: transparent;
+      box-shadow: none;
+      position: static;
+      height: auto;
+      width: auto;
+    }
+    .nav-panel-header {
+      display: none;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+    .nav-links a {
+      position: relative;
+      color: var(--nav-link-color);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 10px 4px;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--nav-link-hover);
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 4px;
+      width: 100%;
+      height: 2px;
+      background: transparent;
+      transition: background 0.2s ease;
+    }
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      background: var(--nav-link-hover);
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 46px;
+      height: 46px;
+      border: 1px solid #373b48;
+      border-radius: 8px;
+      background: #373b48;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #ffffff;
+      margin: 4px 0;
+      transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+    }
+    body.nav-open .menu-toggle span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    body.nav-open .menu-toggle span:nth-child(2) {
+      opacity: 0;
+    }
+    body.nav-open .menu-toggle span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    section {
+      width: 100%;
+      scroll-margin-top: var(--header-height);
+    }
+    section img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .section-cta {
+      position: relative;
+    }
+    .cta-overlay {
+      position: absolute;
+      pointer-events: none;
+    }
+    .cta-overlay .hero-button,
+    .cta-overlay .naver-button {
+      pointer-events: auto;
+    }
+    .cta-overlay-first,
+    .cta-overlay-second {
+      bottom: 6vh;
+      left: 6vw;
+    }
+    .cta-overlay-naver {
+      bottom: 9vh;
+      left: 6vw;
+    }
+    .cta-overlay-naver .cta-row {
+      display: flex;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .cta-overlay-naver .cta-row .naver-sub-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      background: #373b48;
+      color: #ffffff;
+      border: 1px solid #373b48;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+      pointer-events: auto;
+      white-space: nowrap;
+    }
+    .cta-overlay-naver .cta-row .naver-sub-btn:hover,
+    .cta-overlay-naver .cta-row .naver-sub-btn:focus-visible {
+      background: #4b5164;
+    }
+    .hero-section {
+      position: relative;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      pointer-events: none;
+      padding-top: 15vh;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 0 5vw;
+      max-width: none;
+      pointer-events: auto;
+    }
+    .hero-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+    .hero-button:active {
+      transform: translateY(2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+    }
+    .hero-button.primary {
+      background: #373b48;
+      color: #ffffff;
+      border-color: #373b48;
+    }
+    .hero-button.primary:hover,
+    .hero-button.primary:focus-visible {
+      background: #4b5164;
+    }
+    .hero-button.secondary {
+      background: #ffffff;
+      color: #373b48;
+      border-color: rgba(55, 59, 72, 0.4);
+    }
+    .hero-button.secondary:hover,
+    .hero-button.secondary:focus-visible {
+      background: rgba(255, 255, 255, 0.9);
+    }
+    .naver-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+      border: 1px solid #03c75a;
+      background: #03c75a;
+      color: #ffffff;
+      box-shadow: 0 14px 28px rgba(3, 199, 90, 0.28);
+      white-space: nowrap;
+      pointer-events: auto;
+    }
+    .naver-button:hover,
+    .naver-button:focus-visible {
+      background: #02ad4d;
+    }
+    .naver-button:active {
+      transform: translateY(2px);
+      box-shadow: 0 8px 18px rgba(3, 199, 90, 0.28);
+    }
+    @media (max-width: 720px) {
+      .hero-overlay {
+        align-items: flex-end;
+        padding-top: 0;
+        padding-bottom: 5vh;
+      }
+      .hero-actions {
+        padding: 0 12px 16px;
+        gap: 6px;
+      }
+      .hero-button {
+        width: calc(50% - 12px);
+        padding: 5px 10px;
+        font-size: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+      }
+      .cta-overlay-first,
+      .cta-overlay-second {
+        left: 16px;
+        bottom: 1vh;
+      }
+      .cta-overlay-first .hero-button,
+      .cta-overlay-second .hero-button {
+        width: auto;
+        padding: 3px 7px;
+        font-size: 7px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+      }
+      .cta-overlay-naver {
+        left: 20px;
+        bottom: 0.5vh;
+      }
+      .cta-overlay-naver .naver-button {
+        padding: 3px 7px;
+        font-size: 7px;
+        box-shadow: 0 2px 6px rgba(3, 199, 90, 0.24);
+      }
+      .cta-overlay-naver .cta-row {
+        margin-top: 8px;
+        gap: 6px;
+      }
+      .cta-overlay-naver .cta-row .naver-sub-btn {
+        padding: 4px 10px;
+        font-size: 8px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.14);
+      }
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    @media (max-width: 1120px) {
+      .nav-links a {
+        font-size: 14px;
+        padding: 8px 2px;
+      }
+      .header-inner {
+        padding: 0 20px;
+      }
+    }
+    @media (max-width: 960px) {
+      .menu-toggle {
+        display: flex;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 100%;
+        pointer-events: none;
+      }
+      .nav-panel {
+        position: absolute;
+        top: 0;
+        right: -320px;
+        width: 280px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: var(--nav-bg-mobile);
+        box-shadow: -10px 0 24px rgba(0, 0, 0, 0.35);
+        transition: right 0.35s ease;
+        pointer-events: auto;
+      }
+      .nav-panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 24px 24px 0;
+      }
+      .nav-close {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        background: rgba(0, 0, 0, 0.15);
+        color: #ffffff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease;
+      }
+      .nav-close:hover,
+      .nav-close:focus-visible {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .nav-links {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 32px 32px;
+        gap: 22px;
+        list-style: none;
+        margin: 0;
+        overflow-y: auto;
+      }
+      body.nav-open nav .nav-panel {
+        right: 0;
+      }
+      nav .nav-links a {
+        color: #ffffff;
+        font-weight: 700;
+      }
+      nav .nav-links a:hover,
+      nav .nav-links a:focus-visible {
+        color: #d8b651;
+      }
+      nav .nav-links a::after {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="#hero">
+        <img src="images/logo.png" alt="더바인 퀀텀 골드 클래스 로고">
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="sr-only">메뉴 열기</span>
+      </button>
+      <nav>
+        <div class="nav-panel">
+          <div class="nav-panel-header">
+            <button class="nav-close" type="button" aria-label="메뉴 닫기">&times;</button>
+          </div>
+          <ul class="nav-links" id="primary-nav">
+            <li><a href="#hero">히어로</a></li>
+            <li><a href="#growth">도약의 시대</a></li>
+            <li><a href="#mba-differentiation">실전 차별화</a></li>
+            <li><a href="#program-overview">과정 개요</a></li>
+            <li><a href="#planning-intent">기획 의도</a></li>
+            <li><a href="#first-curriculum">1기 커리큘럼</a></li>
+            <li><a href="#second-curriculum">2기 커리큘럼</a></li>
+            <li><a href="#special-workshop">특별 워크샵</a></li>
+            <li><a href="#student-benefits">수강생 혜택</a></li>
+            <li><a href="#registration-guide">등록 안내</a></li>
+            <li><a href="#first-come">선착순 등록</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section id="hero" class="hero-section">
+      <img src="images/h-1-p.png" alt="히어로 섹션">
+      <div class="hero-overlay">
+        <div class="hero-actions">
+          <a class="hero-button primary" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
+          <a class="hero-button secondary" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
+        </div>
+      </div>
+    </section>
+    <section id="growth">
+      <img src="images/h-2.png" alt="양적 성장을 넘어 도약의 시대로">
+    </section>
+    <section id="mba-differentiation">
+      <img src="images/h-3.png" alt="MBA보다 더 실전적인 차별화">
+    </section>
+    <section id="program-overview">
+      <img src="images/h-4.png" alt="과정 개요">
+    </section>
+    <section id="planning-intent">
+      <img src="images/h-4-2.png" alt="프로그램 기획 의도">
+    </section>
+    <section id="first-curriculum" class="section-cta">
+      <img src="images/h-5.png" alt="1기 커리큘럼">
+      <div class="cta-overlay cta-overlay-first">
+        <a class="hero-button primary" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
+      </div>
+    </section>
+    <section id="second-curriculum" class="section-cta">
+      <img src="images/h-6.png" alt="2기 커리큘럼">
+      <div class="cta-overlay cta-overlay-second">
+        <a class="hero-button secondary" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
+      </div>
+    </section>
+    <section id="special-workshop">
+      <img src="images/h-7.png" alt="특별 워크샵">
+    </section>
+    <section id="student-benefits">
+      <img src="images/h-8.png" alt="수강생 혜택">
+    </section>
+    <section id="registration-guide">
+      <img src="images/h-9.png" alt="등록 안내">
+    </section>
+    <section id="first-come" class="section-cta">
+      <img src="images/h-10.png" alt="선착순 등록 중">
+      <div class="cta-overlay cta-overlay-naver">
+        <a class="naver-button" href="https://blog.naver.com/thevine_official" target="_blank" rel="noopener">네이버 공식 블로그</a>
+        <div class="cta-row">
+          <a class="naver-sub-btn" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
+          <a class="naver-sub-btn" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    (function () {
+      const body = document.body;
+      const toggleButton = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const navClose = document.querySelector('.nav-close');
+
+      function setExpanded(isOpen) {
+        toggleButton.setAttribute('aria-expanded', String(isOpen));
+      }
+
+      toggleButton.addEventListener('click', function () {
+        const isOpen = body.classList.toggle('nav-open');
+        setExpanded(isOpen);
+      });
+
+      navLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          if (window.matchMedia('(max-width: 960px)').matches) {
+            body.classList.remove('nav-open');
+            setExpanded(false);
+          }
+        });
+      });
+
+      if (navClose) {
+        navClose.addEventListener('click', function () {
+          body.classList.remove('nav-open');
+          setExpanded(false);
+        });
+      }
+
+      window.addEventListener('resize', function () {
+        if (!window.matchMedia('(max-width: 960px)').matches) {
+          body.classList.remove('nav-open');
+          setExpanded(false);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
+
