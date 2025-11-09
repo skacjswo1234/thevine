@@ -171,6 +171,64 @@
       bottom: 6vh;
       left: 6vw;
     }
+    .mobile-modal-trigger {
+      display: none;
+    }
+    .media-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(13, 16, 24, 0.82);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      z-index: 120;
+    }
+    .media-modal.open {
+      display: flex;
+    }
+    .media-modal-inner {
+      position: relative;
+      max-width: 100%;
+      max-height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .media-modal img {
+      width: 100%;
+      height: auto;
+      max-height: calc(100vh - 120px);
+      border-radius: 18px;
+      box-shadow: 0 28px 48px rgba(0, 0, 0, 0.35);
+    }
+    .modal-close {
+      position: absolute;
+      top: -42px;
+      right: 0;
+      border: none;
+      background: rgba(0, 0, 0, 0.45);
+      color: #ffffff;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      font-size: 22px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .modal-close:hover,
+    .modal-close:focus-visible {
+      background: rgba(0, 0, 0, 0.65);
+      transform: scale(1.04);
+    }
+    body.modal-open {
+      overflow: hidden;
+    }
     .section-cta-inline {
       padding: 28px 0 52px;
       display: flex;
@@ -384,6 +442,47 @@
         transform: scale(3.4);
         margin-top: 30px;
       }
+      #first-curriculum img,
+      #second-curriculum img {
+        display: none;
+      }
+      #first-curriculum .mobile-modal-trigger,
+      #second-curriculum .mobile-modal-trigger {
+        display: inline-flex;
+      }
+      .mobile-modal-trigger {
+        margin: 0 16px;
+        width: calc(100% - 32px);
+        justify-content: center;
+        padding: 16px 24px;
+        border-radius: 18px;
+        border: none;
+        background: #373b48;
+        color: #ffffff;
+        font-weight: 800;
+        font-size: 18px;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        box-shadow: 0 18px 34px rgba(0, 0, 0, 0.24);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      }
+      .mobile-modal-trigger:hover,
+      .mobile-modal-trigger:focus-visible {
+        background: #4b5164;
+        transform: translateY(-1px);
+        box-shadow: 0 20px 38px rgba(0, 0, 0, 0.26);
+      }
+      .mobile-modal-trigger.secondary {
+        background: #ffffff;
+        color: #373b48;
+        border: 1px solid rgba(55, 59, 72, 0.4);
+        box-shadow: 0 18px 34px rgba(55, 59, 72, 0.18);
+      }
+      .mobile-modal-trigger.secondary:hover,
+      .mobile-modal-trigger.secondary:focus-visible {
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 20px 38px rgba(55, 59, 72, 0.22);
+      }
       .hero-overlay {
         align-items: flex-end;
         padding-top: 0;
@@ -446,6 +545,18 @@
         padding: 16px 20px;
         font-size: 16px;
         white-space: nowrap;
+      }
+      .media-modal {
+        padding: 16px;
+      }
+      .media-modal-inner {
+        width: 100%;
+        max-width: none;
+      }
+      .media-modal img {
+        max-height: none;
+        width: 100%;
+        border-radius: 12px;
       }
       .cta-footer {
         padding: 48px 18px 64px;
@@ -616,12 +727,14 @@
     </section>
     <section id="first-curriculum" class="section-cta">
       <img src="images/h-5.png" alt="1기 커리큘럼">
+      <button class="mobile-modal-trigger" type="button" data-image-src="images/h-5-m.png" data-image-alt="1기 커리큘럼 상세 이미지">1기 커리큘럼 보기</button>
     </section>
     <div class="section-cta-inline">
       <a class="cta-long" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
     </div>
     <section id="second-curriculum" class="section-cta">
       <img src="images/h-6.png" alt="2기 커리큘럼">
+      <button class="mobile-modal-trigger secondary" type="button" data-image-src="images/h-6-m.png" data-image-alt="2기 커리큘럼 상세 이미지">2기 커리큘럼 보기</button>
     </section>
     <div class="section-cta-inline">
       <a class="cta-long secondary" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
@@ -648,6 +761,12 @@
       </div>
     </div>
   </main>
+  <div class="media-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="media-modal-inner">
+      <button class="modal-close" type="button" aria-label="모달 닫기">&times;</button>
+      <img src="" alt="">
+    </div>
+  </div>
   <script>
     (function () {
       const body = document.body;
@@ -684,6 +803,56 @@
         if (!window.matchMedia('(max-width: 960px)').matches) {
           body.classList.remove('nav-open');
           setExpanded(false);
+        }
+      });
+
+      const modal = document.querySelector('.media-modal');
+      const modalImage = modal ? modal.querySelector('img') : null;
+      const modalClose = modal ? modal.querySelector('.modal-close') : null;
+      const modalTriggers = document.querySelectorAll('.mobile-modal-trigger');
+
+      function openModal(src, alt) {
+        if (!modal || !modalImage) return;
+        modalImage.src = src;
+        modalImage.alt = alt || '';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        body.classList.add('modal-open');
+        if (modalClose) {
+          modalClose.focus();
+        }
+      }
+
+      function closeModal() {
+        if (!modal || !modalImage) return;
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        body.classList.remove('modal-open');
+        modalImage.src = '';
+        modalImage.alt = '';
+      }
+
+      modalTriggers.forEach(function (trigger) {
+        trigger.addEventListener('click', function () {
+          const src = trigger.getAttribute('data-image-src');
+          const alt = trigger.getAttribute('data-image-alt');
+          openModal(src, alt);
+        });
+      });
+
+      if (modal && modalClose) {
+        modalClose.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', function (event) {
+          if (event.target === modal) {
+            closeModal();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && modal && modal.classList.contains('open')) {
+          closeModal();
         }
       });
     })();
