@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>더바인 퀀텀 골드 클래스</title>
   <style>
-    @import url('https://fonts.cdnfonts.com/css/mona-sans');
-
     :root {
       --header-height: 32px;
       --nav-bg: #373b48;
@@ -26,8 +24,8 @@
     }
     body {
       margin: 0;
-      font-family: "Mona Sans", sans-serif;
-      font-weight: 600;
+      font-family: "Malgun Gothic", sans-serif;
+      font-weight: 400;
       color: #ffffff;
       min-height: 100vh;
     }
@@ -55,14 +53,19 @@
       display: inline-flex;
       align-items: center;
       height: 100%;
+      text-decoration: none;
+      color: inherit;
     }
-    .brand img {
-      display: block;
-      height: 56px;
-      width: auto;
-      transform: scale(3.8);
-      transform-origin: left center;
-      margin-top: 30px;
+    .brand:focus-visible {
+      outline: 2px solid rgba(55, 59, 72, 0.6);
+      outline-offset: 4px;
+      border-radius: 8px;
+    }
+    .brand-text {
+      font-size: 26px;
+      font-weight: 700;
+      color: #373b48;
+      text-decoration: none;
     }
     nav {
       display: flex;
@@ -95,7 +98,7 @@
       color: var(--nav-link-color);
       text-decoration: none;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.02em;
       padding: 10px 4px;
       transition: color 0.2s ease;
@@ -250,7 +253,7 @@
       padding: 22px 48px;
       border-radius: 999px;
       font-size: 22px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.04em;
       text-decoration: none;
       background: #373b48;
@@ -340,7 +343,7 @@
       padding: 12px 22px;
       border-radius: 999px;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.02em;
       text-decoration: none;
       background: #373b48;
@@ -382,7 +385,7 @@
       padding: 20px 38px;
       border-radius: 999px;
       font-size: 21px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.02em;
       text-decoration: none;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
@@ -419,7 +422,7 @@
       padding: 18px 30px;
       border-radius: 999px;
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.02em;
       text-decoration: none;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
@@ -445,10 +448,8 @@
       .header-inner {
         padding: 2px 12px;
       }
-      .brand img {
-        height: 44px;
-        transform: scale(3.4);
-        margin-top: 30px;
+      .brand-text {
+        font-size: 20px;
       }
       #first-curriculum img,
       #second-curriculum img {
@@ -467,7 +468,7 @@
         border: 2px solid transparent;
         background: #373b48;
         color: #ffffff;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 20px;
         letter-spacing: 0.02em;
         cursor: pointer;
@@ -597,10 +598,8 @@
       :root {
         --header-height: 28px;
       }
-      .brand img {
-        height: 48px;
-        transform: scale(3.6);
-        margin-top: 30px;
+      .brand-text {
+        font-size: 22px;
       }
       .nav-links a {
         font-size: 14px;
@@ -675,7 +674,7 @@
       }
       nav .nav-links a {
         color: #ffffff;
-        font-weight: 600;
+        font-weight: 700;
       }
       nav .nav-links a:hover,
       nav .nav-links a:focus-visible {
@@ -691,7 +690,7 @@
   <header>
     <div class="header-inner">
       <a class="brand" href="#hero" aria-label="더바인 퀀텀 클래스 홈">
-        <img src="images/logo.png" alt="더바인 퀀텀 클래스 로고">
+        <span class="brand-text">더바인 퀀텀 클래스</span>
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
         <span></span>
