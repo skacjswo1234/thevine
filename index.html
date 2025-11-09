@@ -8,7 +8,7 @@
     @import url('https://fonts.cdnfonts.com/css/mona-sans');
 
     :root {
-      --header-height: 72px;
+      --header-height: 32px;
       --nav-bg: #373b48;
       --nav-bg-mobile: #373b48;
       --nav-link-color: #373b48;
@@ -28,10 +28,8 @@
       overflow: hidden;
     }
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      position: relative;
+      width: 100%;
       z-index: 100;
       background: transparent;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -39,12 +37,12 @@
     .header-inner {
       max-width: 1280px;
       margin: 0 auto;
-      height: var(--header-height);
-      padding: 0 28px;
+      min-height: var(--header-height);
+      padding: 4px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 12px;
     }
     .brand {
       display: inline-flex;
@@ -53,8 +51,11 @@
     }
     .brand img {
       display: block;
-      height: 44px;
+      height: 56px;
       width: auto;
+      transform: scale(3.8);
+      transform-origin: left center;
+      margin-top: 30px;
     }
     nav {
       display: flex;
@@ -147,7 +148,7 @@
     }
     section {
       width: 100%;
-      scroll-margin-top: var(--header-height);
+      scroll-margin-top: 32px;
     }
     section img {
       display: block;
@@ -170,9 +171,96 @@
       bottom: 6vh;
       left: 6vw;
     }
+    .section-cta-inline {
+      padding: 28px 0 52px;
+      display: flex;
+      justify-content: center;
+    }
+    .cta-long {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 22px 48px;
+      border-radius: 999px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      background: #373b48;
+      color: #ffffff;
+      border: 2px solid rgba(216, 182, 81, 0.32);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      min-width: min(90%, 560px);
+      text-align: center;
+      white-space: nowrap;
+    }
+    .cta-long:hover,
+    .cta-long:focus-visible {
+      background: #4b5164;
+      transform: translateY(-2px);
+      box-shadow: 0 22px 42px rgba(0, 0, 0, 0.26);
+    }
+    .cta-long:active {
+      transform: translateY(1px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    }
+    .cta-long.secondary {
+      background: #ffffff;
+      color: #373b48;
+      border-color: rgba(55, 59, 72, 0.4);
+      box-shadow: 0 18px 36px rgba(55, 59, 72, 0.18);
+    }
+    .cta-long.secondary:hover,
+    .cta-long.secondary:focus-visible {
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 22px 42px rgba(55, 59, 72, 0.24);
+    }
+    .cta-long.secondary:active {
+      transform: translateY(1px);
+      box-shadow: 0 12px 28px rgba(55, 59, 72, 0.22);
+    }
+    .cta-footer {
+      padding: 60px 28px 80px;
+      display: flex;
+      justify-content: center;
+      background: rgba(16, 18, 26, 0.85);
+      backdrop-filter: blur(12px);
+    }
+    .cta-footer-inner {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .cta-footer .cta-long {
+      flex: 1 1 280px;
+      min-width: 240px;
+      max-width: 360px;
+    }
+    .section-cta-inline .cta-long.secondary {
+      background: #ffffff;
+      color: #373b48;
+      border-color: rgba(55, 59, 72, 0.4);
+      box-shadow: 0 18px 36px rgba(55, 59, 72, 0.18);
+    }
+    .section-cta-inline .cta-long.secondary:hover,
+    .section-cta-inline .cta-long.secondary:focus-visible {
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 22px 42px rgba(55, 59, 72, 0.24);
+    }
+    .section-cta-inline .cta-long.secondary:active {
+      transform: translateY(1px);
+      box-shadow: 0 12px 28px rgba(55, 59, 72, 0.22);
+    }
     .cta-overlay-naver {
-      bottom: 9vh;
-      left: 6vw;
+      bottom: 12vh;
+      left: 10vw;
     }
     .cta-overlay-naver .cta-row {
       display: flex;
@@ -225,9 +313,9 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 14px 26px;
+      padding: 20px 38px;
       border-radius: 999px;
-      font-size: 17px;
+      font-size: 21px;
       font-weight: 700;
       letter-spacing: 0.02em;
       text-decoration: none;
@@ -262,9 +350,9 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 14px 26px;
+      padding: 18px 30px;
       border-radius: 999px;
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 700;
       letter-spacing: 0.02em;
       text-decoration: none;
@@ -285,6 +373,17 @@
       box-shadow: 0 8px 18px rgba(3, 199, 90, 0.28);
     }
     @media (max-width: 720px) {
+      :root {
+        --header-height: 26px;
+      }
+      .header-inner {
+        padding: 2px 12px;
+      }
+      .brand img {
+        height: 44px;
+        transform: scale(3.4);
+        margin-top: 30px;
+      }
       .hero-overlay {
         align-items: flex-end;
         padding-top: 0;
@@ -296,8 +395,8 @@
       }
       .hero-button {
         width: calc(50% - 12px);
-        padding: 5px 10px;
-        font-size: 10px;
+        padding: 9px 16px;
+        font-size: 14px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
       }
       .cta-overlay-first,
@@ -308,17 +407,17 @@
       .cta-overlay-first .hero-button,
       .cta-overlay-second .hero-button {
         width: auto;
-        padding: 3px 7px;
-        font-size: 7px;
+        padding: 8px 14px;
+        font-size: 11px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
       }
       .cta-overlay-naver {
         left: 20px;
-        bottom: 0.5vh;
+        bottom: 1vh;
       }
       .cta-overlay-naver .naver-button {
-        padding: 3px 7px;
-        font-size: 7px;
+        padding: 5px 10px;
+        font-size: 9px;
         box-shadow: 0 2px 6px rgba(3, 199, 90, 0.24);
       }
       .cta-overlay-naver .cta-row {
@@ -326,9 +425,34 @@
         gap: 6px;
       }
       .cta-overlay-naver .cta-row .naver-sub-btn {
-        padding: 4px 10px;
-        font-size: 8px;
+        padding: 8px 14px;
+        font-size: 12px;
         box-shadow: 0 3px 8px rgba(0, 0, 0, 0.14);
+      }
+      .section-cta-inline {
+        padding: 18px 16px 40px;
+      }
+      .section-cta-inline .cta-long {
+        min-width: 100%;
+        max-width: none;
+        padding: 18px 24px;
+        font-size: 18px;
+        white-space: normal;
+      }
+      .cta-footer .cta-long {
+        min-width: 0;
+        flex: 1 1 50%;
+        max-width: 50%;
+        padding: 16px 20px;
+        font-size: 16px;
+        white-space: nowrap;
+      }
+      .cta-footer {
+        padding: 48px 18px 64px;
+      }
+      .cta-footer-inner {
+        gap: 12px;
+        flex-wrap: nowrap;
       }
     }
     .sr-only {
@@ -343,12 +467,20 @@
       border: 0;
     }
     @media (max-width: 1120px) {
+      :root {
+        --header-height: 28px;
+      }
+      .brand img {
+        height: 48px;
+        transform: scale(3.6);
+        margin-top: 30px;
+      }
       .nav-links a {
         font-size: 14px;
         padding: 8px 2px;
       }
       .header-inner {
-        padding: 0 20px;
+        padding: 4px 14px;
       }
     }
     @media (max-width: 960px) {
@@ -431,8 +563,8 @@
 <body>
   <header>
     <div class="header-inner">
-      <a class="brand" href="#hero">
-        <img src="images/logo.png" alt="더바인 퀀텀 골드 클래스 로고">
+      <a class="brand" href="#hero" aria-label="더바인 퀀텀 클래스 홈">
+        <img src="images/logo.png" alt="더바인 퀀텀 클래스 로고">
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
         <span></span>
@@ -446,9 +578,7 @@
             <button class="nav-close" type="button" aria-label="메뉴 닫기">&times;</button>
           </div>
           <ul class="nav-links" id="primary-nav">
-            <li><a href="#hero">히어로</a></li>
-            <li><a href="#growth">도약의 시대</a></li>
-            <li><a href="#mba-differentiation">실전 차별화</a></li>
+            
             <li><a href="#program-overview">과정 개요</a></li>
             <li><a href="#planning-intent">기획 의도</a></li>
             <li><a href="#first-curriculum">1기 커리큘럼</a></li>
@@ -486,16 +616,16 @@
     </section>
     <section id="first-curriculum" class="section-cta">
       <img src="images/h-5.png" alt="1기 커리큘럼">
-      <div class="cta-overlay cta-overlay-first">
-        <a class="hero-button primary" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
-      </div>
     </section>
+    <div class="section-cta-inline">
+      <a class="cta-long" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
+    </div>
     <section id="second-curriculum" class="section-cta">
       <img src="images/h-6.png" alt="2기 커리큘럼">
-      <div class="cta-overlay cta-overlay-second">
-        <a class="hero-button secondary" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
-      </div>
     </section>
+    <div class="section-cta-inline">
+      <a class="cta-long secondary" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
+    </div>
     <section id="special-workshop">
       <img src="images/h-7.png" alt="특별 워크샵">
     </section>
@@ -509,12 +639,14 @@
       <img src="images/h-10.png" alt="선착순 등록 중">
       <div class="cta-overlay cta-overlay-naver">
         <a class="naver-button" href="https://blog.naver.com/thevine_official" target="_blank" rel="noopener">네이버 공식 블로그</a>
-        <div class="cta-row">
-          <a class="naver-sub-btn" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
-          <a class="naver-sub-btn" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
-        </div>
       </div>
     </section>
+    <div class="cta-footer">
+      <div class="cta-footer-inner">
+        <a class="cta-long" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
+        <a class="cta-long secondary" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
+      </div>
+    </div>
   </main>
   <script>
     (function () {
