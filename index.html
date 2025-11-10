@@ -254,18 +254,14 @@
       background: rgba(16, 18, 26, 0.85);
       backdrop-filter: blur(12px);
     }
-    .cta-footer-inner {
+    .cta-footer .hero-actions {
       width: 100%;
       max-width: 960px;
       display: flex;
       justify-content: center;
       gap: 28px;
       flex-wrap: wrap;
-    }
-    .cta-footer .cta-long {
-      flex: 0 0 auto;
-      min-width: 0;
-      max-width: none;
+      padding: 0;
     }
     .section-cta-inline .hero-button {
       min-width: 0;
@@ -417,7 +413,7 @@
         padding-bottom: 5vh;
       }
       .hero-actions {
-        padding: 0 12px 14px;
+        padding: 0 0px 14px;
         gap: 6px;
         flex-direction: row;
         flex-wrap: wrap;
@@ -469,6 +465,16 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
         white-space: normal;
       }
+      .cta-footer {
+        padding: 36px 16px 52px;
+      }
+      .cta-footer .hero-actions {
+        width: 100%;
+        gap: 6px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0 12px;
+      }
       .section-cta-inline-inner {
         max-width: none;
       }
@@ -478,14 +484,6 @@
         padding: 12px 20px;
         font-size: 16px;
         white-space: normal;
-      }
-      .cta-footer {
-        padding: 36px 16px 52px;
-      }
-      .cta-footer-inner {
-        gap: 6px;
-        flex-wrap: wrap;
-        
       }
       .cta-footer .cta-long {
         width: 100%;
@@ -660,7 +658,10 @@
       </picture>
     </section>
     <div class="section-cta-inline">
-      <a class="hero-button primary" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
+      <div class="hero-actions">
+        <a class="hero-button primary" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
+        
+      </div>
     </div>
     <section id="second-curriculum" class="section-cta">
       <picture>
@@ -669,7 +670,10 @@
       </picture>
     </section>
     <div class="section-cta-inline">
-      <a class="hero-button secondary" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
+      <div class="hero-actions">
+        
+        <a class="hero-button secondary" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
+      </div>
     </div>
     <section id="special-workshop">
       <img src="images/h-7.png" alt="특별 워크샵">
@@ -686,16 +690,12 @@
         <a class="naver-button" href="https://blog.naver.com/thevine_official" target="_blank" rel="noopener">네이버 공식 블로그</a>
       </div>
     </section>
-    <div class="cta-footer">
-      <div class="cta-footer-inner">
-       
-          <div class="hero-actions">
-            <a class="hero-button primary" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
-            <a class="hero-button secondary" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
-          </div>
-        
+    <footer class="cta-footer">
+      <div class="hero-actions">
+        <a class="hero-button primary" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
+        <a class="hero-button secondary" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
       </div>
-    </div>
+    </footer>
   </main>
   <script>
     (function () {
