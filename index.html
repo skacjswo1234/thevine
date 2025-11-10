@@ -62,10 +62,11 @@
       border-radius: 8px;
     }
     .brand-text {
-      font-size: 26px;
-      font-weight: 700;
+      font-size: 23px;
+      font-weight: 600;
       color: #373b48;
       text-decoration: none;
+      font-family: "Malgun Gothic", sans-serif;
     }
     nav {
       display: flex;
@@ -98,7 +99,7 @@
       color: var(--nav-link-color);
       text-decoration: none;
       font-size: 15px;
-      font-weight: 700;
+      font-weight: 550;
       letter-spacing: 0.02em;
       padding: 10px 4px;
       transition: color 0.2s ease;
@@ -159,6 +160,11 @@
     section {
       width: 100%;
       scroll-margin-top: 32px;
+      padding: 60px 0;
+    }
+    .hero-section {
+      padding-top: 0;
+      padding-bottom: 0;
     }
     section img {
       display: block;
@@ -241,7 +247,14 @@
       overflow: hidden;
     }
     .section-cta-inline {
-      padding: 28px 0 52px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 32px 0 48px;
+    }
+    .section-cta-inline-inner {
+      width: 100%;
+      max-width: 720px;
       display: flex;
       justify-content: center;
     }
@@ -250,18 +263,18 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
-      padding: 22px 48px;
+      padding: 16px 32px;
       border-radius: 999px;
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
       text-decoration: none;
       background: #373b48;
       color: #ffffff;
-      border: 2px solid rgba(216, 182, 81, 0.32);
-      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+      border: 1px solid rgba(216, 182, 81, 0.32);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-      min-width: min(90%, 560px);
+      min-width: min(90%, 420px);
       text-align: center;
       white-space: nowrap;
     }
@@ -307,9 +320,13 @@
       flex-wrap: wrap;
     }
     .cta-footer .cta-long {
-      flex: 1 1 280px;
-      min-width: 240px;
-      max-width: 360px;
+      flex: 0 1 240px;
+      min-width: 200px;
+      max-width: 320px;
+    }
+    .section-cta-inline .hero-button {
+      min-width: 0;
+      width: auto;
     }
     .section-cta-inline .cta-long.secondary {
       background: #ffffff;
@@ -328,7 +345,7 @@
       box-shadow: 0 12px 28px rgba(55, 59, 72, 0.22);
     }
     .cta-overlay-naver {
-      bottom: 12vh;
+      bottom: 16vh;
       left: 10vw;
     }
     .cta-overlay-naver .cta-row {
@@ -382,9 +399,9 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 20px 38px;
+      padding: 16px 32px;
       border-radius: 999px;
-      font-size: 21px;
+      font-size: 18px;
       font-weight: 700;
       letter-spacing: 0.02em;
       text-decoration: none;
@@ -463,16 +480,16 @@
         margin: 0 16px;
         width: calc(100% - 32px);
         justify-content: center;
-        padding: 18px 28px;
+        padding: 16px 28px;
         border-radius: 999px;
-        border: 2px solid transparent;
+        border: 1px solid transparent;
         background: #373b48;
         color: #ffffff;
         font-weight: 700;
-        font-size: 20px;
+        font-size: 18px;
         letter-spacing: 0.02em;
         cursor: pointer;
-        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
         transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
       }
       .mobile-modal-trigger:hover,
@@ -521,12 +538,18 @@
       }
       .cta-overlay-naver {
         left: 24px;
-        bottom: 2vh;
+        bottom: 4.5vh;
       }
       .cta-overlay-naver .naver-button {
         padding: 4px 9px;
         font-size: 8px;
         box-shadow: 0 2px 6px rgba(3, 199, 90, 0.24);
+      }
+      section {
+        padding: 20px 0;
+      }
+      .section-cta-inline {
+        padding: 16px 12px 28px;
       }
       .cta-overlay-naver .cta-row {
         margin-top: 8px;
@@ -541,11 +564,14 @@
         padding: 18px 16px 40px;
       }
       .section-cta-inline .cta-long {
-        min-width: 100%;
-        max-width: none;
-        padding: 18px 24px;
-        font-size: 18px;
+        width: 100%;
+        justify-content: center;
+        padding: 12px 18px;
+        font-size: 14px;
         white-space: normal;
+      }
+      .section-cta-inline-inner {
+        max-width: none;
       }
       .cta-footer .cta-long {
         min-width: 0;
@@ -689,8 +715,8 @@
 <body>
   <header>
     <div class="header-inner">
-      <a class="brand" href="#hero" aria-label="더바인 퀀텀 클래스 홈">
-        <span class="brand-text">더바인 퀀텀 클래스</span>
+      <a class="brand" href="#hero" aria-label="더바인 퀀텀 골드 클래스 홈">
+        <span class="brand-text">더바인 퀀텀 골드 클래스</span>
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
         <span></span>
@@ -745,14 +771,18 @@
       <button class="mobile-modal-trigger" type="button" data-image-src="images/h-5-m.png" data-image-alt="1기 커리큘럼 상세 이미지">1기 커리큘럼 보기</button>
     </section>
     <div class="section-cta-inline">
-      <a class="cta-long" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
+      <div class="section-cta-inline-inner">
+        <a class="cta-long hero-button primary" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
+      </div>
     </div>
     <section id="second-curriculum" class="section-cta">
       <img src="images/h-6.png" alt="2기 커리큘럼">
       <button class="mobile-modal-trigger secondary" type="button" data-image-src="images/h-6-m.png" data-image-alt="2기 커리큘럼 상세 이미지">2기 커리큘럼 보기</button>
     </section>
     <div class="section-cta-inline">
-      <a class="cta-long secondary" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
+      <div class="section-cta-inline-inner">
+        <a class="cta-long hero-button secondary" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
+      </div>
     </div>
     <section id="special-workshop">
       <img src="images/h-7.png" alt="특별 워크샵">
@@ -771,8 +801,8 @@
     </section>
     <div class="cta-footer">
       <div class="cta-footer-inner">
-        <a class="cta-long" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
-        <a class="cta-long secondary" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
+        <a class="cta-long hero-button primary" href="https://forms.gle/pccYXdpcrZZjJ5seA" target="_blank" rel="noopener">1기 등록하기</a>
+        <a class="cta-long hero-button secondary" href="https://forms.gle/AtX37vYZeL1iw5UA8" target="_blank" rel="noopener">2기 등록하기</a>
       </div>
     </div>
   </main>
