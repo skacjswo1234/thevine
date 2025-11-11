@@ -425,6 +425,17 @@
         font-size: 14px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
       }
+      .hero-section .hero-actions {
+        justify-content: center;
+        gap: 8px;
+      }
+      .hero-section .hero-button {
+        flex: 0 0 auto;
+        min-width: 0;
+        padding: 8px 16px;
+        font-size: 12px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+      }
       .cta-overlay-first,
       .cta-overlay-second {
         left: 16px;
@@ -448,50 +459,55 @@
       section {
         padding: 18px 0;
       }
-      .section-cta-inline {
+    .section-cta-inline {
         padding: 14px 12px 26px;
         gap: 6px;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: center;
+      }
+      .section-cta-inline .hero-actions {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        gap: 8px;
       }
       .section-cta-inline .hero-button,
-      .section-cta-inline .cta-long,
-      .cta-footer .hero-button,
-      .cta-footer .cta-long {
-        flex: 1 1 calc(50% - 6px);
+      .section-cta-inline .cta-long {
+        flex: 0 0 auto;
         min-width: 0;
-        padding: 10px 14px;
-        font-size: 14px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+        padding: 9px 18px;
+        font-size: 13px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
         white-space: normal;
       }
-      .cta-footer {
-        padding: 36px 16px 52px;
-      }
       .cta-footer .hero-actions {
-        width: 100%;
-        gap: 6px;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        padding: 0 12px;
+        justify-content: center;
+        gap: 12px;
+        padding: 0;
+      }
+      .cta-footer .hero-button,
+      .cta-footer .cta-long {
+        flex: 0 0 auto;
+        min-width: 0;
+        padding: 8px 16px;
+        font-size: 12px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+        white-space: normal;
       }
       .section-cta-inline-inner {
         max-width: none;
       }
       .section-cta-inline .cta-long {
-        width: 100%;
+        width: auto;
         justify-content: center;
-        padding: 10px 16px;
-        font-size: 14px;
-        white-space: normal;
+      }
+      .cta-footer {
+        padding: 28px 16px 40px;
       }
       .cta-footer .cta-long {
-        width: 100%;
+        width: auto;
         justify-content: center;
-        padding: 10px 14px;
-        font-size: 14px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-        white-space: normal;
       }
     }
     .sr-only {
